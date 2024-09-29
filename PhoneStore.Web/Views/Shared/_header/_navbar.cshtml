@@ -1,0 +1,218 @@
+﻿@inject PhoneStore.Web.Resources.LocService L
+@{
+    bool isRTL = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft;
+
+    string data_kt_menu_placement = "bottom-start";
+
+    string data_kt_sub_menu_placement = "right-start";
+
+
+
+    if (isRTL)
+
+    {
+
+        data_kt_menu_placement = "bottom-end";
+
+        data_kt_sub_menu_placement = "left-start";
+
+    }
+}
+<div class="deznav">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">@L["Main Menu"]</li>
+            <li>
+                <a class="" asp-action="index" asp-controller="Home" asp-area="" aria-expanded="false">
+                    <i class="flaticon-144-layout"></i>
+                    <span class="nav-text">@L["Dashboard"]</span>
+                </a>
+
+            </li>
+            @*
+            @if (User.IsInRole("superAdmin") || User.IsInRole("CiscoUser") || User.IsInRole("CiscoAdmin"))
+            { *@
+            <li>
+                <a class="" asp-action="index" asp-controller="Company" asp-area="PhoneStore" aria-expanded="false">
+                    <i class="fa fa-tty"></i>
+                    <span class="nav-text">@L["Companies"]</span>
+                </a>
+
+            </li>
+            @*  }
+            @if (User.IsInRole("superAdmin") || User.IsInRole("CiscoAdmin") || User.IsInRole("WifiAdmin"))
+            { *@
+            <li>
+                <a class="" asp-action="index" asp-controller="Goods" asp-area="PhoneStore" aria-expanded="false">
+                    <i class="fa fa-tty"></i>
+                    <span class="nav-text">@L["Goods"]</span>
+                </a>
+
+            </li>
+            @* }
+
+
+            @if (User.IsInRole("superAdmin") || User.IsInRole("CableAdmin") || User.IsInRole("CableUser"))
+            { *@
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-server"></i>
+                    <span class="nav-text">@L["Purchase"]</span>
+                </a>
+                <ul aria-expanded="false">
+
+                    <li>
+                        <a class="" asp-action="Index" asp-controller="Purchase" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-server"></i>
+                            <span class="nav-text">@L["All Purchases"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="Create" asp-controller="SupplierPurchase" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-server"></i>
+                            <span class="nav-text">@L["New Purchase"]</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" asp-action="index" asp-controller="Supplier" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Suppliers"]</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" asp-action="SupplierLoanView" asp-controller="Purchase" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Suppliers Loan"]</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" asp-action="Index" asp-controller="SuppliersPayment" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Suppliers Payment"]</span>
+                        </a>
+                    </li>
+                </ul>
+                @*      </li>
+                }
+
+
+                @if (User.IsInRole("superAdmin") || User.IsInRole("WifiAdmin") || User.IsInRole("WifiUser"))
+                { *@
+
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-wifi"></i>
+                    <span class="nav-text">@L["Sales"]</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a class="" asp-action="index" asp-controller="Sales" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["All Sales"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="Create" asp-controller="CustomerSales" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-server"></i>
+                            <span class="nav-text">@L["New Sale"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="index" asp-controller="Customer" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Customers"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="CustomerLoanView" asp-controller="Sales" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Customers Loan"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="Index" asp-controller="CustomersPayment" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Customers Payment"]</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </li>
+                @* }
+
+            @if (User.IsInRole("superAdmin") || User.IsInRole("UsbAdmin") || User.IsInRole("UsbUser"))
+            { *@
+            <li>
+                <a class="" asp-action="index" asp-controller="ExtraExpenses" asp-area="PhoneStore" aria-expanded="false">
+                    <i class="fa fa-usb"></i>
+                    <span class="nav-text">@L["Extra Expenses"]</span>
+                </a>
+
+            </li>
+                @*  }
+
+            @if (User.IsInRole("superAdmin") || User.IsInRole("UsbAdmin") || User.IsInRole("UsbUser"))
+            { *@
+            <li>
+                <a class="" asp-action="Index" asp-controller="Stock" asp-area="PhoneStore" aria-expanded="false">
+                    <i class="fa fa-usb"></i>
+                    <span class="nav-text">@L["Stock"]</span>
+                </a>
+
+            </li>
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-wifi"></i>
+                    <span class="nav-text">@L["Loans Payment"]</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a class="" asp-action="Index" asp-controller="CustomerLoans" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-laptop"></i>
+                            <span class="nav-text">@L["Customers Loan Payment"]</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="" asp-action="Index" asp-controller="SupplierLoans" asp-area="PhoneStore" aria-expanded="false">
+                            <i class="fa fa-server"></i>
+                            <span class="nav-text">@L["Suppliers Loan Payment"]</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </li>
+                @*  }
+
+
+            <li class="nav-label">@L["Manager Section"]</li>
+            @if (User.IsInRole("superAdmin"))
+            { *@
+                @*  }
+            @if (User.IsInRole("superAdmin"))
+            { *@
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-144-layout"></i>
+                    <span class="nav-text">@L["Reports"]</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a class="" asp-action="EmployeesReport" asp-controller="Reports" asp-area="PhoneStore" aria-expanded="false">
+                                @*    <i class="fa fa-newspaper-o"></i> *@
+                            <span class="nav-text">@L["Report"]</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </li>
+                @*   } *@
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,271 @@
+﻿@inject PhoneStore.Web.Resources.LocService L
+@model PhoneStore.Application.Dtos.CustomerDto
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@L["Customers List"]</h4>
+                <div class="d-flex justify-content-end">
+                    <!--begin::Add user-->
+                    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addCustomerModel">
+                        <span class="fa fa-plus"></span>
+                    </button>
+                    <!--end::Add user-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dtTable" class="display" style="min-width: 845px; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>@L["Customer Name"]</th>
+                                <th>@L["Phone Number"]</th>
+                                <th>@L["Address"]</th>
+                                <th>@L["Province"]</th>
+                                <th>@L["Action"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Add Customer Model *@
+<div id="addCustomerModel" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Register Customer"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddCustomer" method="post">
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="CustomerName" class="required form-label"></label>
+                                <input asp-for="CustomerName" class="form-control" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="PhoneNumber" class="required form-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Address" class="required form-label"></label>
+                                <input asp-for="Address" class="form-control" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="ProvinceId" class="required form-label"></label>
+                                <select asp-for="ProvinceId" asp-items="@ViewBag.Provinces"
+                                        class="form-select form-control select2" data-placeholder="@L["Select an option"]" required>
+                                    <option></option>
+                                </select>
+                                <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Save Changes"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@* Edit Customer Model *@
+<div id="EditCustomerModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Update Customer"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+                <form id="EditCustomerFrm" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="CreatedDate" />
+                    <input type="hidden" asp-for="CreatedBy" />
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="CustomerName" class="required form-label"></label>
+                                <input asp-for="CustomerName" class="form-control" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="PhoneNumber" class="required form-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Address" class="required form-label"></label>
+                                <input asp-for="Address" class="form-control" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="ProvinceId" class="required form-label"></label>
+                                <select asp-for="ProvinceId" asp-items="@ViewBag.Provinces"
+                                        class="form-select form-control select2" data-placeholder="@L["Select an option"]" required>
+                                    <option></option>
+                                </select>
+                                <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Update"]</button>
+                    </div>
+                </form>
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+</div>
+
+@section Script {
+    <script>
+        var dtTable;
+        var i = 1;
+        var shouldCallFunction = true;
+        $(function () {
+            dtTable = $("#dtTable").DataTable({
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                    }
+                },
+                "processing": true,
+                // "serverSide": true,
+                "orderMulti": false,
+                //"filter": true,
+                "ajax": {
+                    "url": "Customer/GetCustomers",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "emptyrecords": 'No records to display',
+                //"dom": '<"top"f>frtip<"bottom"l><"clear">',
+                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                "aoColumns": [
+                    { "data": "customerName" },
+                    { "data": "phoneNumber" },
+                    { "data": "address" },
+                    { "data": "province" },
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        "mRender": function (data, type, row) {
+                            return `<a href="#" class="btn btn-primary shadow btn-xs sharp mr-1" onclick="loadCustomer(${row.id})" data-toggle="modal" data-target="#EditCustomerModal"><i class="fa fa-pencil"></i></a>`;
+                        }
+                    }
+                ]
+            });
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data'),
+
+                    val = $(this).val();
+                dtTable.search(val.trim()).draw();
+            });
+        });
+        $('#frmAddCustomer').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "Customer/AddCustomer",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#addCustomerModel').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#frmAddCustomer').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Customer has been added successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Customer is Already Exist"])", "warning");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+        $('#EditCustomerFrm').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "Customer/EditCustomer",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#EditCustomerModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#EditCustomerFrm').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Customer updated successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Customer is Already Exist"])", "warning");
+                        $("#IDCard").focus();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+        $("#ProvinceId").change(function () {
+            fillDropdownByParentId(this, "#DirectoryId", "/General/GetDirectories");
+        });
+        $("#EditCustomerFrm #ProvinceId").change(function () {
+            //shouldCallFunction = true;
+            if (shouldCallFunction) {
+                fillDropdownByParentId(this, "#EditCustomerFrm #DirectoryId", "/General/GetDirectories");
+            }
+        });
+      
+        function loadCustomer(id) {
+            $.ajax({
+                url: "/PhoneStore/Customer/GetCustomer",
+                type: "Get",
+                data: { id: id },
+                dataType: "json",
+                success: function (response) {
+                    for (var propName in response.data) {
+                        if (response.data.hasOwnProperty(propName)) {
+                            var Prop = propName.replace(/^"(.*)"$/, '$1');
+                            var Value = response.data[Prop];
+                            var Capital = propName.charAt(0).toUpperCase() + propName.slice(1);
+                            if (propName === "provinceId") {
+                                shouldCallFunction = false;
+                                $('#EditCustomerFrm #ProvinceId').val(Value).trigger('change');
+                                shouldCallFunction = true;
+                            }
+                            $('#EditCustomerFrm input[id="' + Capital + '"]').val(Value);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

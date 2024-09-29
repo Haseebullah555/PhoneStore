@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Additional\Handler\Commands\" />
+    <Folder Include="Features\Additional\Request\Commands\" />
+    <Folder Include="Features\CustomerLoans\Handler\Command\" />
+    <Folder Include="Features\CustomerLoans\Handler\Query\" />
+    <Folder Include="Features\SupplierLoans\Handler\Command\" />
+    <Folder Include="Features\SupplierLoans\Request\Command\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\PhoneStore.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

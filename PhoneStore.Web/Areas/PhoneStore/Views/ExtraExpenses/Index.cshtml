@@ -1,0 +1,243 @@
+﻿@inject PhoneStore.Web.Resources.LocService L
+@model PhoneStore.Application.Dtos.ExtraExpensesDto
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@L["Extra Expenses List"]</h4>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addExtraExpensesModal">
+                        <span class="fa fa-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dtTable" class="display" style="min-width: 845px; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>@L["ID"]</th>
+                                <th>@L["Description"]</th>
+                                <th>@L["Quantity"]</th>
+                                <th>@L["Date"]</th>
+                                <th>@L["Action"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Add ExtraExpenses Modal *@
+<div id="addExtraExpensesModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Add Extra Expenses"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddExtraExpenses" method="post">
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Description" class="required form-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Quantity" class="required form-label"></label>
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Date" class="required form-label"></label>
+                                <input asp-for="Date" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Save Changes"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@* Edit ExtraExpenses Modal *@
+<div id="EditExtraExpensesModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Update Extra Expense"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+                <form id="EditExtraExpensesFrm" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="CreatedDate" />
+                    <input type="hidden" asp-for="CreatedBy" />
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Description" class="required form-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Quantity" class="required form-label"></label>
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="Date" class="required form-label"></label>
+                                <input asp-for="Date" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Update"]</button>
+                    </div>
+                </form>
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+</div>
+
+@section Script {
+    <script>
+        var dtTable;
+        var i = 1;
+        var shouldCallFunction = true;
+        $(function () {
+            console.log()
+            dtTable = $("#dtTable").DataTable({
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                    }
+                },
+                "processing": true,
+                // "serverSide": true,
+                "orderMulti": false,
+                //"filter": true,
+                "ajax": {
+                    "url": "ExtraExpenses/GetExtraExpenses",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "emptyrecords": 'No records to display',
+                //"dom": '<"top"f>frtip<"bottom"l><"clear">',
+                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                "aoColumns": [
+                    { "data": "id"},
+                    { "data": "description" },
+                    { "data": "quantity" },
+                    { "data": "date" },
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        "mRender": function (data, type, row) {
+                            return `<a href="#" class="btn btn-primary shadow btn-xs sharp mr-1" onclick="loadExtraExpenses(${row.id})" data-toggle="modal" data-target="#EditExtraExpensesModal"><i class="fa fa-pencil"></i></a>`;
+                        }
+                    }
+                ]
+            });
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data'),
+
+                    val = $(this).val();
+                dtTable.search(val.trim()).draw();
+            });
+        });
+
+        $('#frmAddExtraExpenses').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "ExtraExpenses/AddExtraExpense",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#addExtraExpensesModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#frmAddExtraExpenses').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Extra Expenses has been added successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Extra Expenses is Already Exist"])", "warning");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+
+        $('#EditExtraExpensesFrm').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "ExtraExpenses/EditExtraExpense",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#EditExtraExpensesModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#EditExtraExpensesFrm').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Extra Expenses updated successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Extra Expenses is Already Exist"])", "warning");
+                        $("#IDCard").focus();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+ 
+        function loadExtraExpenses(id) {
+            $.ajax({
+                url: "/PhoneStore/ExtraExpenses/GetExtraExpenses",
+                type: "Get",
+                data: { id: id },
+                dataType: "json",
+                success: function (response) {
+                    for (var propName in response.data) {
+                        if (response.data.hasOwnProperty(propName)) {
+                            var Prop = propName.replace(/^"(.*)"$/, '$1');
+                            var Value = response.data[Prop];
+                            var Capital = propName.charAt(0).toUpperCase() + propName.slice(1);
+                            if (propName === "provinceId") {
+                                shouldCallFunction = false;
+                                $('#EditExtraExpensesFrm #ProvinceId').val(Value).trigger('change');
+                                shouldCallFunction = true;
+                            }
+                            $('#EditExtraExpensesFrm input[id="' + Capital + '"]').val(Value);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

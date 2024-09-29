@@ -1,0 +1,188 @@
+﻿@model PhoneStore.Domain.Models.Customer;
+@inject PhoneStore.Web.Resources.LocService L;
+<div class="row">
+    <div class="col-12 mx-auto pt-0">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="">Create Sale</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label asp-for="CustomerName" class="control-label"></label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="PhoneNumber" class="control-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="ProvinceId" class="control-label"></label>
+                            <select asp-for="ProvinceId" asp-items="@ViewBag.Provinces"
+                                    class="form-select form-control select2" data-placeholder="@L["Select an option"]"
+                                data-placeholder="Select an option" required>
+                            </select>
+                            <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table id="ExpTable" class="table table-responsive table-sm">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Good Name
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Sale Price
+                                    </th>
+                                    <th>
+                                        Total Price
+                                    </th>
+                                    <th>
+                                        Paid Amount
+                                    </th>
+                                    <th>
+                                        Unpaid Amount
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Sales.Count; i++)
+                                {
+                                    <tr>
+                                        <td class=" col-md-3">
+                                            <select asp-for="Sales[i].GoodId"
+                                                    asp-items="@ViewBag.Goods"
+                                                    class="form-select form-control select2"
+                                                    data-placeholder="Select an option" required>
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Sales[i].SaleAmount" class="form-control amount" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="Sales[i].SaleUnitPrice" class="form-control unit-price" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="Sales[i].TotalPrice" class="form-control total-price" readonly />
+                                        </td>
+                                        <td>
+                                            <input asp-for="Sales[i].PaidAmount" class="form-control paid" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="Sales[i].UnPaidAmount" class="form-control unpaid" readonly />
+                                        </td>
+                                        <td>
+                                            <button id="btndummy-@i" type="button" class="btn btn-sm invisible">Dummy</button>
+
+                                            <button id="btnadd-@i" type="button" class="btn btn-sm btn-success visible"
+                                                    onclick="AddItem(this)" style="left:93%;position:absolute;">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                            <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger invisible"
+                                                    onclick="DeleteItem(this)" style="left:93%;position:absolute;">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="hidden" id="hdnLastIndex" value="0" />
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-controller="Purchase" asp-action="Index" class="btn">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function DeleteItem(btn) {
+            $(btn).closest('tr').remove();
+        }
+        function AddItem(btn) {
+            var table = document.getElementById('ExpTable');
+            var rows = table.getElementsByTagName('tr');
+            var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+            var lastrowIdx = document.getElementById('hdnLastIndex').value;
+            var nextrowIdx = eval(lastrowIdx) + 1;
+            document.getElementById('hdnLastIndex').value = nextrowIdx;
+
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
+            rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
+            rowOuterHtml = rowOuterHtml.replaceAll('-' + lastrowIdx, '-' + nextrowIdx);
+
+
+
+            var newRow = table.insertRow();
+            newRow.innerHTML = rowOuterHtml;
+
+            var btnAddId = btn.id;
+            var btnDeleteId = btnAddId.replaceAll('btnadd', 'btnremove');
+            var delbtn = document.getElementById(btnDeleteId);
+            delbtn.classList.add("visible");
+            delbtn.classList.remove("invisible");
+
+            var addbtn = document.getElementById(btnAddId);
+            addbtn.classList.remove("visible");
+            addbtn.classList.add("invisible");
+        }
+        // Handle change or input for amount and unit price
+        $(document).on('change input', '.amount, .unit-price', function () {
+            // Get the current row
+            var row = $(this).closest('tr');
+
+            // Get the values from the current row
+            var Amount = row.find('.amount').val();
+            var UnitPrice = row.find('.unit-price').val();
+
+            // Ensure both are numbers
+            var totalPrice = parseFloat(Amount) * parseFloat(UnitPrice);
+
+            // Set the TotalPrice field in the current row
+            row.find('.total-price').val(totalPrice);
+        });
+
+        // Handle change or input for paid amount
+        $(document).on('change input', '.paid', function () {
+            // Get the current row
+            var row = $(this).closest('tr');
+
+            // Get the values from the current row
+            var Paid = row.find('.paid').val();
+            var TotalPrice = row.find('.total-price').val();
+
+            // Calculate unpaid amount
+            var UnPaid = parseFloat(TotalPrice) - parseFloat(Paid);
+
+            // Set the UnPaid field in the current row
+            row.find('.unpaid').val(UnPaid);
+        });
+
+       
+    </script>
+
+}

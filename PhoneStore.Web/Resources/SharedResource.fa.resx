@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="Add Customer Payment" xml:space="preserve">
+    <value>اضافه نمودن پرداخت مشتری</value>
+  </data>
+  <data name="Add Extra Expenses" xml:space="preserve">
+    <value>اضافه نمودن مصارف اضافی</value>
+  </data>
+  <data name="Add Good" xml:space="preserve">
+    <value>اضافه کردن اجناس</value>
+  </data>
+  <data name="Add New Purchase" xml:space="preserve">
+    <value>اضافه نمودن خریداری چدید</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="All Purchases" xml:space="preserve">
+    <value>لیست خریداری ها</value>
+  </data>
+  <data name="All Sales" xml:space="preserve">
+    <value>لیست فروشات</value>
+  </data>
+  <data name="An Error Has beed Occured Pleas Try Again" xml:space="preserve">
+    <value>مشکل وجود دارد لطفا دوباره کوشش کنید</value>
+  </data>
+  <data name="Available Stock" xml:space="preserve">
+    <value>انیار موجوده</value>
+  </data>
+  <data name="Cash Purchases" xml:space="preserve">
+    <value>خریداری به نقد</value>
+  </data>
+  <data name="Cash Sales" xml:space="preserve">
+    <value>فروشات به تقد</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>بستن</value>
+  </data>
+  <data name="Companies" xml:space="preserve">
+    <value>کمپنی </value>
+  </data>
+  <data name="Companies List" xml:space="preserve">
+    <value>لیست کمپنی ها</value>
+  </data>
+  <data name="Company has been added successfully" xml:space="preserve">
+    <value>کمپنی موفقانه اضافه گردید</value>
+  </data>
+  <data name="Company is Already Exist" xml:space="preserve">
+    <value>کمپنی موجود میباشد</value>
+  </data>
+  <data name="Company Name" xml:space="preserve">
+    <value>نام کمپنی</value>
+  </data>
+  <data name="Company updated successfully" xml:space="preserve">
+    <value>کمپنی موفقانه تغییر نمود</value>
+  </data>
+  <data name="Customer has been added successfully" xml:space="preserve">
+    <value>مشتری موفقانه اضافه گردید</value>
+  </data>
+  <data name="Customer is Already Exist" xml:space="preserve">
+    <value>مشتری موجود میباشد</value>
+  </data>
+  <data name="Customer Name" xml:space="preserve">
+    <value>اسم مشتری</value>
+  </data>
+  <data name="Customer Payment has been added successfully" xml:space="preserve">
+    <value>پرداخت مشتری موفقانه اضافه گردید</value>
+  </data>
+  <data name="Customer Payment is Already Exist" xml:space="preserve">
+    <value>پرداخت مشتری موجود میباشد</value>
+  </data>
+  <data name="Customer Payment updated successfully" xml:space="preserve">
+    <value>پرداخت مشتری موفقانه تغییر نمود</value>
+  </data>
+  <data name="Customer updated successfully" xml:space="preserve">
+    <value>مشتری موفقانه تغییر گردید</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>مشتریان</value>
+  </data>
+  <data name="Customers List" xml:space="preserve">
+    <value>لیست مشتریان</value>
+  </data>
+  <data name="Customers Loan" xml:space="preserve">
+    <value>قرضه های مشتریان</value>
+  </data>
+  <data name="Customers Loan Payment" xml:space="preserve">
+    <value>پرداخت قرضه مشتریان</value>
+  </data>
+  <data name="Customers Payment" xml:space="preserve">
+    <value>پرداخت مشتریان</value>
+  </data>
+  <data name="Customers Payment List" xml:space="preserve">
+    <value>لیست پرداخت مشتریان</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>دشبورد</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>مشکل</value>
+  </data>
+  <data name="Extra Expenses" xml:space="preserve">
+    <value>مصارف اضافی</value>
+  </data>
+  <data name="Extra Expenses has been added successfully" xml:space="preserve">
+    <value>مصرف اضافی موفقانه اضافه گردید</value>
+  </data>
+  <data name="Extra Expenses is Already Exist" xml:space="preserve">
+    <value>موجود میباشد</value>
+  </data>
+  <data name="Extra Expenses List" xml:space="preserve">
+    <value>لیست مصارف متفرقه</value>
+  </data>
+  <data name="Extra Expenses updated successfully" xml:space="preserve">
+    <value>مصرف اضافی موقفانه تغییر نمود</value>
+  </data>
+  <data name="failed" xml:space="preserve">
+    <value>ناکام</value>
+  </data>
+  <data name="Good has been added successfully" xml:space="preserve">
+    <value>جنس موفقانه اضافه گردید</value>
+  </data>
+  <data name="Good is Already Exist" xml:space="preserve">
+    <value>جنس موجود میباشد</value>
+  </data>
+  <data name="Good Name" xml:space="preserve">
+    <value>نام جنس</value>
+  </data>
+  <data name="Good updated successfully" xml:space="preserve">
+    <value>جنس موفقانه تغییر نمود</value>
+  </data>
+  <data name="Goods" xml:space="preserve">
+    <value>اجناس</value>
+  </data>
+  <data name="Goods List" xml:space="preserve">
+    <value>لیست اجناس</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ای دی</value>
+  </data>
+  <data name="JOKO" xml:space="preserve">
+    <value>جوکو</value>
+  </data>
+  <data name="Loan Purchases" xml:space="preserve">
+    <value>خریداری به قرض</value>
+  </data>
+  <data name="Loan Sales" xml:space="preserve">
+    <value>فروشات به قرض</value>
+  </data>
+  <data name="Loans Payment" xml:space="preserve">
+    <value>پرداخت قرضه ها</value>
+  </data>
+  <data name="Main Menu" xml:space="preserve">
+    <value>مینوی اصلی</value>
+  </data>
+  <data name="Management System" xml:space="preserve">
+    <value>سیستم مدیریتی</value>
+  </data>
+  <data name="New Purchase" xml:space="preserve">
+    <value>خریداری جدید</value>
+  </data>
+  <data name="New Sale" xml:space="preserve">
+    <value>فروش جدید</value>
+  </data>
+  <data name="Out Of Stock Items" xml:space="preserve">
+    <value>اجناس کم تعداد</value>
+  </data>
+  <data name="Paid Amount" xml:space="preserve">
+    <value>مقدار پرداخت شده</value>
+  </data>
+  <data name="Payment Date" xml:space="preserve">
+    <value>تاریخ پرداخت</value>
+  </data>
+  <data name="Payment Quantity" xml:space="preserve">
+    <value>مقدار پرداخت</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>شماره تماس</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>ولایت</value>
+  </data>
+  <data name="Purchase" xml:space="preserve">
+    <value>خریداری</value>
+  </data>
+  <data name="Purchase is Already Exist" xml:space="preserve">
+    <value>خریداری موجود میباشد</value>
+  </data>
+  <data name="Purchase Price" xml:space="preserve">
+    <value>قیمت خرید</value>
+  </data>
+  <data name="Purchase Quantity" xml:space="preserve">
+    <value>مقدار خرید</value>
+  </data>
+  <data name="Purchase updated successfully" xml:space="preserve">
+    <value>خریداری موفقانه تغییر نمود</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>مقدار</value>
+  </data>
+  <data name="Register Company" xml:space="preserve">
+    <value>راجستر کردن</value>
+  </data>
+  <data name="Register Customer" xml:space="preserve">
+    <value>ثبت کردن مشتری</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>راپور ها</value>
+  </data>
+  <data name="Sale is Already Exist" xml:space="preserve">
+    <value>فروش موجود میباشد</value>
+  </data>
+  <data name="Sale Quantity" xml:space="preserve">
+    <value>مقدار فروش</value>
+  </data>
+  <data name="Sale updated successfully" xml:space="preserve">
+    <value>فروش موفقانه تغییر نمود</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>فروشات</value>
+  </data>
+  <data name="Sales updated successfully" xml:space="preserve">
+    <value>فروش موفقانه تغییر نمود</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>ثبت تغییرات</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>انبار</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>موفق</value>
+  </data>
+  <data name="Supplier is Already Exist" xml:space="preserve">
+    <value>تامین کننده موجود میباشد</value>
+  </data>
+  <data name="Supplier Loan is Already Exist" xml:space="preserve">
+    <value>قرضه تامین کننده موجود میباشد</value>
+  </data>
+  <data name="Supplier Loan updated successfully" xml:space="preserve">
+    <value>قرضه تامین کننده موفقانه تغییر نمود</value>
+  </data>
+  <data name="Supplier Loans List" xml:space="preserve">
+    <value>لیست قرضه تامین کننده گان</value>
+  </data>
+  <data name="Supplier Name" xml:space="preserve">
+    <value>نام تامین کننده</value>
+  </data>
+  <data name="Supplier Payment has been added successfully" xml:space="preserve">
+    <value>پرداخت تامین کننده موفقانه اضافه گردید</value>
+  </data>
+  <data name="Supplier updated successfully" xml:space="preserve">
+    <value>تامین کننده موفقانه تغییر نمود</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>تامین کنندگان</value>
+  </data>
+  <data name="Suppliers List" xml:space="preserve">
+    <value>لیست تامین کننده گان</value>
+  </data>
+  <data name="Suppliers Loan" xml:space="preserve">
+    <value>قرضه تامین کنندگان</value>
+  </data>
+  <data name="Suppliers Loan List" xml:space="preserve">
+    <value>قرضه تامین کننده گان</value>
+  </data>
+  <data name="Suppliers Loan Payment" xml:space="preserve">
+    <value>پرداخت قرضه تامین کننده گان</value>
+  </data>
+  <data name="Today Purchases" xml:space="preserve">
+    <value>خریداری امروز</value>
+  </data>
+  <data name="Today Sales" xml:space="preserve">
+    <value>فروشات امروز</value>
+  </data>
+  <data name="Total Price" xml:space="preserve">
+    <value>قیمت مجموعی</value>
+  </data>
+  <data name="Total Purchase Price" xml:space="preserve">
+    <value>قیمت مجموعی خرید</value>
+  </data>
+  <data name="Unit Purchase Price" xml:space="preserve">
+    <value>قیمت خرید فی واحد</value>
+  </data>
+  <data name="Unit Sale Price" xml:space="preserve">
+    <value>قیمت فروش فی واحد</value>
+  </data>
+  <data name="UnPaid Amount" xml:space="preserve">
+    <value>مقدار پرداخت نشده</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>تغییر</value>
+  </data>
+  <data name="Update Company" xml:space="preserve">
+    <value>تغییر کمپنی</value>
+  </data>
+  <data name="Update Customer" xml:space="preserve">
+    <value>تغییر مشتری</value>
+  </data>
+  <data name="Update CustomerPayment" xml:space="preserve">
+    <value>تغیرر پرداخت مشتری</value>
+  </data>
+  <data name="Update Extra Expense" xml:space="preserve">
+    <value>تغییر مصار ف اضافی</value>
+  </data>
+  <data name="Update Good" xml:space="preserve">
+    <value>تغییر جنس</value>
+  </data>
+  <data name="Update Purchase" xml:space="preserve">
+    <value>تغییر خریداری</value>
+  </data>
+  <data name="Update Sale" xml:space="preserve">
+    <value>تغییر فروش</value>
+  </data>
+  <data name="Update Supplier" xml:space="preserve">
+    <value>تغییر تامین کننده</value>
+  </data>
+  <data name="Update Supplier Loan" xml:space="preserve">
+    <value>تغییر قرضه تامین کننده</value>
+  </data>
+</root>

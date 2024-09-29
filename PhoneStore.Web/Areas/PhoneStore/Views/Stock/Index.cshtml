@@ -1,0 +1,74 @@
+﻿@inject PhoneStore.Web.Resources.LocService L
+@model PhoneStore.Application.Dtos.StockDto;
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@L["Available Stock"]</h3>
+                <div class="d-flex justify-content-end">
+                    <!--begin::Add user-->
+                    <a type="button" class="btn btn-primary mb-2" asp-action="Create" asp-controller="SupplierPurchase">
+                        <span class="fa fa-plus"></span>
+                    </a>
+                    <!--end::Add user-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dtTable" class="display" style="min-width: 845px; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>@L["Good Name"]</th>
+                                <th>@L["Company Name"]</th>
+                                <th>@L["Quantity"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Script {
+    <script>
+        var dtTable;
+        var i = 1;
+        var shouldCallFunction = true;
+        $(function () {
+            dtTable = $("#dtTable").DataTable({
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                    }
+                },
+                "processing": true,
+                // "serverSide": true,
+                "orderMulti": false,
+                //"filter": true,
+                "ajax": {
+                    "url": "/PhoneStore/Stock/AvailibleStock",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "emptyrecords": 'No records to display',
+                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                "aoColumns": [
+                    { "data": "goodName" },
+                    { "data": "companyName" },
+                    { "data": "quantity" },
+
+                ]
+            });
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data'),
+
+                    val = $(this).val();
+                dtTable.search(val.trim()).draw();
+            });
+        });
+    </script>
+}

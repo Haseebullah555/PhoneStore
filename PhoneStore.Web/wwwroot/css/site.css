@@ -1,0 +1,94 @@
+.toolbar {
+    background-color: #096eaa;
+}
+.bg-gradient {
+    background: -webkit-gradient(linear, left top, left bottom, from(#47a7e0), to(#096eaa)) !important;
+    background: linear-gradient(to bottom, #47a7e0, #096eaa) !important;
+}
+.SimpleCurveBorderedFieldset {
+    border: 1px solid #009EF7 !important;
+    border-radius: 5px !important;
+}
+.main-card {
+    margin-top: 1.25rem !important;
+    background-color:white;
+}
+.table-no-padding > thead > tr > th,
+.table-no-padding > tbody > tr > th,
+.table-no-padding > tfoot > tr > th,
+.table-no-padding > thead > tr > td,
+.table-no-padding > tbody > tr > td,
+.table-no-padding > tfoot > tr > td {
+    padding: 3px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: none;
+}
+
+.no-padding > tbody {
+    border-bottom: 2px solid #f4f4f4;
+}
+
+tfoot {
+    display: table-header-group;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+tfoot .search-row th .search-input {
+    height: 30px;
+    width: 100% !important;
+}
+
+.search-row th .search-input {
+    height: 30px;
+    width: 100% !important;
+}
+
+tfoot .search-row td .search-input {
+    height: 30px;
+    width: 100% !important;
+}
+
+.search-row td .search-input {
+    height: 30px;
+    width: 100% !important;
+}
+
+tfoot .search-row th {
+    padding: 5px 5px 5px 5px !important;
+}
+
+.search-row th {
+    padding: 5px 5px 5px 5px !important;
+}
+
+.dt-buttons > .btn {
+    background: #1ABB9C !important;
+    border: 1px solid #1ABB9C !important;
+    color: white !important;
+    margin-right: 5px !important;
+    font-size: small !important
+}
+
+.dataTables_info {
+    padding-bottom: 10px !important;
+}
+
+table.dataTable {
+    border-collapse: collapse !important
+}
+.dataTables_empty{
+    text-align:center;
+}
+.app-background {
+    background-image: url('/assets/media/images/hmis2.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: top !important;
+    background: #f4f6f9;
+    background-size: cover;
+    object-fit: cover;
+}

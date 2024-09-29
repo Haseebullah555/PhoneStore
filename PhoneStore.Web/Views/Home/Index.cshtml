@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@inject PhoneStore.Web.Resources.LocService L;
+<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
+	<h2 class="font-w600 title mb-2 mr-auto ">@L["Dashboard"]</h2>
+</div>
+<div class="row">
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/Sales.jpeg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600">@ViewBag.Sales</h2>
+				<p>@L["Today Sales"]</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/CashSales.jpeg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.CashSales</h2>
+				<p>@L["Cash Sales"]</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/LoanSales.png" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.LoanSales</h2>
+				<p>@L["Loan Sales"]</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/OutOfStock.png" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.OutOfStockCount</h2>
+				<p>@L["Out Of Stock Items"]</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/Purchases.jpg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600">@ViewBag.Purchases</h2>
+				<p>@L["Today Purchases"]</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/CashPurchases.jpeg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.CashPurchases</h2>
+				<p>@L["Cash Purchases"]</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/LoanPurchases.jpeg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.LoanPurchases</h2>
+				<p>@L["Loan Purchases"]</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-sm-6 m-t35">
+		<div class="card card-coin">
+			<div class="card-body text-center">
+				<img class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none" src="~/NewAssets/images/Project_images/ExtraExpenses.jpeg" alt="Alternate Text" width="80" height="80" />
+				<h2 class="text-black mb-2 font-w600"> @ViewBag.ExtraExpenses</h2>
+				<p>@L["Extra Expenses"]</p>
+			</div>
+		</div>
+	</div>
+</div>

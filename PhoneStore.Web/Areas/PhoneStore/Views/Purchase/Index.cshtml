@@ -1,0 +1,216 @@
+﻿@inject PhoneStore.Web.Resources.LocService L;
+@model PhoneStore.Application.Dtos.PurchaseDto;
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@L["Purchases List"]</h4>
+                <div class="d-flex justify-content-end">
+                    <!--begin::Add user-->
+                    <a type="button" class="btn btn-primary mb-2" asp-action="Create" asp-controller="SupplierPurchase">
+                        <span class="fa fa-plus"></span>
+                    </a>
+                    <!--end::Add user-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dtTable" class="display" style="min-width: 845px; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>@L["Good Name"]</th>
+                                <th>@L["Supplier Name"]</th>
+                                <th>@L["Purchase Quantity"]</th>
+                                <th>@L["Unit Purchase Price"]</th>
+                                <th>@L["Total Purchase Price"]</th>
+                                <th>@L["Paid Amount"]</th>
+                                <th>@L["UnPaid Amount"]</th>
+                                <th>@L["Action"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Edit Purchase Model *@
+<div id="EditPurchaseModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Update Purchase"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="EditPurchaseFrm" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="SupplierId" />
+                    <input type="hidden" asp-for="GoodId" />
+
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="PurchaseAmount" class="required form-label"></label>
+                                <input asp-for="PurchaseAmount" type="number" class="form-control amount" />
+                                <span asp-validation-for="PurchaseAmount" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="UnitPurchasePrice" class="required form-label"></label>
+                                <input asp-for="UnitPurchasePrice" class="form-control unit-price" />
+                                <span asp-validation-for="UnitPurchasePrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                           
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="TotalPrice" class="required form-label"></label>
+                                <input asp-for="TotalPrice" class="form-control total-price" readonly />
+                                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="PaidAmount" class="required form-label"></label>
+                                <input asp-for="PaidAmount" class="form-control paid" />
+                                <span asp-validation-for="PaidAmount" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="UnPaidAmount" class="required form-label"></label>
+                                <input asp-for="UnPaidAmount" class="form-control unpaid" readonly/>
+                                <span asp-validation-for="UnPaidAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Update"]</button>
+                    </div>
+                </form>
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+</div>
+
+@section Script {
+    <script>
+        var dtTable;
+        var i = 1;
+        var shouldCallFunction = true;
+        $(function () {
+            dtTable = $("#dtTable").DataTable({
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                    }
+                },
+                "processing": true,
+                // "serverSide": true,
+                "orderMulti": false,
+                //"filter": true,
+                "ajax": {
+                    "url": "Purchase/GetAllPurchases",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "emptyrecords": 'No records to display',
+                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                "aoColumns": [
+                    { "data": "goods" },
+                    { "data": "supplier" },
+                    { "data": "purchaseAmount" },
+                    { "data": "unitPurchasePrice" },
+                    { "data": "totalPrice" },
+                    { "data": "paidAmount" },
+                    { "data": "unPaidAmount" },
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        "mRender": function (data, type, row) {
+                            return `<a href="#" class="btn btn-primary shadow btn-xs sharp mr-1" onclick="loadPurchase(${row.id})" data-toggle="modal" data-target="#EditPurchaseModal"><i class="fa fa-pencil"></i></a>`;
+                        }
+                    }
+                ]
+            });
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data'),
+
+                    val = $(this).val();
+                dtTable.search(val.trim()).draw();
+            });
+        });
+        $('#EditPurchaseFrm').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "Purchase/EditPurchase",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#EditPurchaseModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#EditPurchaseFrm').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Purchase updated successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Purchase is Already Exist"])", "warning");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+
+        function loadPurchase(id) {
+            $.ajax({
+                url: "/PhoneStore/Purchase/GetPurchase",
+                type: "Get",
+                data: { id: id },
+                dataType: "json",
+                success: function (response) {
+                    for (var propName in response.data) {
+                        if (response.data.hasOwnProperty(propName)) {
+                            var Prop = propName.replace(/^"(.*)"$/, '$1');
+                            var Value = response.data[Prop];
+                            var Capital = propName.charAt(0).toUpperCase() + propName.slice(1);
+                            $('#EditPurchaseFrm input[id="' + Capital + '"]').val(Value);
+                        }
+                    }
+                }
+            });
+        }
+        $(document).on('change input', '.amount, .unit-price', function () {
+
+            // Get the values from the current row
+            var Amount = $('.amount').val();
+            var UnitPrice = $('.unit-price').val();
+
+            // Ensure both are numbers
+            var totalPrice = parseFloat(Amount) * parseFloat(UnitPrice);
+
+            // Set the TotalPrice field in the current row
+            $('.total-price').val(totalPrice);
+        });
+
+        // Handle change or input for paid amount
+        $(document).on('change input', '.paid, .amount, .unit-price', function () {
+            // Get the values from the current row
+            var Paid = $('.paid').val();
+            var TotalPrice = $('.total-price').val();
+
+            // Calculate unpaid amount
+            var UnPaid = parseFloat(TotalPrice) - parseFloat(Paid);
+
+            // Set the UnPaid field in the current row
+            $('.unpaid').val(UnPaid);
+        });
+    </script>
+}

@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{022173E6-C852-40D5-AAA9-60084FD66D95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{74C7771C-0B80-404E-9D44-214A3CD0C9B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6496E168-D018-48A2-91E5-DDF5A5DF6314}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F6C55C97-9E32-41AF-AB97-1AE3C636BCD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneStore.Application", "Application\PhoneStore.Application.csproj", "{27015227-F6D4-4451-BCC2-90FEDE754199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneStore.Domain", "Domain\PhoneStore.Domain.csproj", "{9584B68C-09BC-4084-9112-1973CC4562AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneStore.Persistence", "PhoneStore.Persistence\PhoneStore.Persistence.csproj", "{70F922BA-7B2D-4C3A-A903-C985F132A150}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneStore.Web", "PhoneStore.Web\PhoneStore.Web.csproj", "{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27015227-F6D4-4451-BCC2-90FEDE754199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27015227-F6D4-4451-BCC2-90FEDE754199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27015227-F6D4-4451-BCC2-90FEDE754199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27015227-F6D4-4451-BCC2-90FEDE754199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9584B68C-09BC-4084-9112-1973CC4562AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9584B68C-09BC-4084-9112-1973CC4562AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9584B68C-09BC-4084-9112-1973CC4562AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9584B68C-09BC-4084-9112-1973CC4562AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F922BA-7B2D-4C3A-A903-C985F132A150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F922BA-7B2D-4C3A-A903-C985F132A150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F922BA-7B2D-4C3A-A903-C985F132A150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F922BA-7B2D-4C3A-A903-C985F132A150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74C7771C-0B80-404E-9D44-214A3CD0C9B2} = {022173E6-C852-40D5-AAA9-60084FD66D95}
+		{6496E168-D018-48A2-91E5-DDF5A5DF6314} = {022173E6-C852-40D5-AAA9-60084FD66D95}
+		{F6C55C97-9E32-41AF-AB97-1AE3C636BCD5} = {022173E6-C852-40D5-AAA9-60084FD66D95}
+		{27015227-F6D4-4451-BCC2-90FEDE754199} = {74C7771C-0B80-404E-9D44-214A3CD0C9B2}
+		{9584B68C-09BC-4084-9112-1973CC4562AF} = {74C7771C-0B80-404E-9D44-214A3CD0C9B2}
+		{70F922BA-7B2D-4C3A-A903-C985F132A150} = {F6C55C97-9E32-41AF-AB97-1AE3C636BCD5}
+		{2B68E89B-DC7C-44F9-8470-72DCBEE89E0D} = {6496E168-D018-48A2-91E5-DDF5A5DF6314}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {471333DE-3867-4BD0-A737-9377EECB127F}
+	EndGlobalSection
+EndGlobal

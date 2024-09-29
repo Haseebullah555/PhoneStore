@@ -1,0 +1,206 @@
+﻿@inject PhoneStore.Web.Resources.LocService L
+@model PhoneStore.Application.Dtos.CompanyDto
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@L["Companies List"]</h4>
+                <div class="d-flex justify-content-end">
+                    <!--begin::Add user-->
+                    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addCompanyModal">
+                        <span class="fa fa-plus"></span>
+                    </button>
+                    <!--end::Add user-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dtTable" class="display" style="min-width: 845px; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>@L["Company Name"]</th>
+                                <th>@L["Action"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Add Company Modal *@
+<div id="addCompanyModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Register Company"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddCompany" method="post">
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="CompanyName" class="required form-label"></label>
+                                <input asp-for="CompanyName" class="form-control" />
+                                <span asp-validation-for="CompanyName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Save Changes"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@* Edit Company Model *@
+<div id="EditCompanyModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["Update Company"]</h5>
+                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="EditCompanyFrm" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="modal-body py-lg-10 px-lg-10">
+                        <div class="form-group row mb-2">
+                            <div class="col-md-4 mb-2">
+                                <label asp-for="CompanyName" class="required form-label"></label>
+                                <input asp-for="CompanyName" class="form-control" />
+                                <span asp-validation-for="CompanyName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@L["Update"]</button>
+                    </div>
+                </form>
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+</div>
+
+@section Script {
+    <script>
+        var dtTable;
+        var i = 1;
+        var shouldCallFunction = true;
+        $(function () {
+            dtTable = $("#dtTable").DataTable({
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                    }
+                },
+                "processing": true,
+                // "serverSide": true,
+                "orderMulti": false,
+                //"filter": true,
+                "ajax": {
+                    "url": "Company/GetCompanies",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "emptyrecords": 'No records to display',
+                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                "aoColumns": [
+                    { "data": "companyName" },
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        "mRender": function (data, type, row) {
+                            return `<a href="#" class="btn btn-primary shadow btn-xs sharp mr-1" onclick="loadCompany(${row.id})" data-toggle="modal" data-target="#EditCompanyModal"><i class="fa fa-pencil"></i></a>`;
+                        }
+                    }
+                ]
+            });
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data'),
+
+                    val = $(this).val();
+                dtTable.search(val.trim()).draw();
+            });
+        });
+        $('#frmAddCompany').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "Company/AddCompany",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#addCompanyModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#frmAddCompany').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Company has been added successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Company is Already Exist"])", "warning");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+        $('#EditCompanyFrm').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "Company/EditCompany",
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $('#EditCompanyModal').modal('hide');
+                        $("#dtTable").DataTable().ajax.reload();
+                        $('#EditCompanyFrm').trigger("reset");
+                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Company updated successfully"])", "success");
+                    }
+                    else {
+                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Company is Already Exist"])", "warning");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
+                }
+            });
+        });
+
+        function loadCompany(id) {
+            $.ajax({
+                url: "/PhoneStore/Company/GetCompany",
+                type: "Get",
+                data: { id: id },
+                dataType: "json",
+                success: function (response) {
+                    for (var propName in response.data) {
+                        if (response.data.hasOwnProperty(propName)) {
+                            var Prop = propName.replace(/^"(.*)"$/, '$1');
+                            var Value = response.data[Prop];
+                            var Capital = propName.charAt(0).toUpperCase() + propName.slice(1);
+                            $('#EditCompanyFrm input[id="' + Capital + '"]').val(Value);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}
