@@ -155,7 +155,7 @@
                         orderable: false,
                         className: 'text-end',
                         "mRender": function (data, type, row) {
-                            return `<a href="#" class="btn btn-outline-info shadow btn-sm" data-toggle="modal" data-target="#SupplierLoanDetailsModal"><i class="fa fa-eye"></i></a>`;
+                            return `<a href="#" class="btn btn-outline-info shadow btn-sm" data-toggle="modal" data-target="#SupplierLoanDetailsModal" data-customer-id="${row.supplierId}"><i class="fa fa-eye"></i></a>`;
                         }
                     }
                 ]
@@ -169,40 +169,49 @@
         });
 
         $(function () {
-            dtTable = $("#dtTable2").DataTable({
-                language: {
-                    paginate: {
-                        next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                        previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-                    }
-                },
-                "processing": true,
-                // "serverSide": true,
-                "orderMulti": false,
-                //"filter": true,
-                "ajax": {
-                    "url": "/PhoneStore/Purchase/SuppliersLoanDetails",
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "emptyrecords": 'No records to display',
-                "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
-                "aoColumns": [
-                    { "data": "goods" },
-                    { "data": "purchaseAmount" },
-                    { "data": "unitPurchasePrice" },
-                    { "data": "totalPrice" },
-                    { "data": "paidAmount" },
-                    { "data": "unPaidAmount" },
-                ]
-            });
-            $('.search-input').on('keyup change', function () {
-                var index = $(this).attr('data'),
+            // Event listener for when the modal is opened
+            $('#SupplierLoanDetailsModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var supplierId = button.data('supplier-id'); // Extract customerId from data-* attribute
 
-                    val = $(this).val();
-                dtTable.search(val.trim()).draw();
+                // Destroy the previous instance of DataTable if it exists
+                if ($.fn.DataTable.isDataTable('#dtTable2')) {
+                    $('#dtTable2').DataTable().clear().destroy();
+                }
+
+                // Initialize the DataTable with the specific customer's loans
+                dtTable = $("#dtTable2").DataTable({
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                            previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                        }
+                    },
+                    "processing": true,
+                    "serverSide": false,
+                    "orderMulti": false,
+                    "ajax": {
+                        "url": "/PhoneStore/Purchase/SuppliersLoanDetails", // Your API endpoint
+                        "type": "GET",
+                        "data": { supplierId: supplierId }, // Pass the customerId to the server
+                        "datatype": "json"
+                    },
+                    "emptyrecords": 'No records to display',
+                    "lengthMenu": [[10, 25, 50, 100, 150, 200], [10, 25, 50, 100, 150, 200]],
+                    "columns": [
+                        { "data": "goods" },
+                        { "data": "purchaseAmount" },
+                        { "data": "unitPurchasePrice" },
+                        { "data": "totalPrice" },
+                        { "data": "paidAmount" },
+                        { "data": "unPaidAmount" }
+                        ]
+                });
             });
         });
+
+
+
 
 
 

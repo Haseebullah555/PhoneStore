@@ -58,36 +58,36 @@ namespace PhoneStore.Persistence.Repositories
         }
         public async Task<List<PurchaseDto>> GetSuppliersLoan()
         {
-            var SupplierLoan = await(from purhcase in _context.Purchases
-                                     where purhcase.UnPaidAmount > 0
-                                     group purhcase by new
-                                     {
-                                         purhcase.Supplier.SupplierName,      // Group by CustomerName
-                                     } into salesGroup
-                                     select new PurchaseDto
-                                     {
-                                         Supplier = salesGroup.Key.SupplierName, // Access the grouped customer name
-                                         UnPaidAmount = salesGroup.Sum(s => s.UnPaidAmount),
-                                     }).ToListAsync();
+            var SupplierLoan = await (from purhcase in _context.Purchases
+                                      where purhcase.UnPaidAmount > 0
+                                      group purhcase by new
+                                      {
+                                          purhcase.Supplier.SupplierName,      // Group by CustomerName
+                                      } into salesGroup
+                                      select new PurchaseDto
+                                      {
+                                          Supplier = salesGroup.Key.SupplierName, // Access the grouped customer name
+                                          UnPaidAmount = salesGroup.Sum(s => s.UnPaidAmount),
+                                      }).ToListAsync();
 
             return SupplierLoan;
         }
-        public async Task<List<PurchaseDto>> GetSuppliersLoanDetails()
-        {
-            var SupplierLoan = await (from purchases in _context.Purchases
-                                      where purchases.UnPaidAmount > 0
-                                      select new PurchaseDto
-                                      {
-                                          Id = purchases.Id,
-                                          Supplier = purchases.Supplier.SupplierName,
-                                          Goods = purchases.Goods.GoodName,
-                                          PurchaseAmount = purchases.PurchaseAmount,
-                                          UnitPurchasePrice = purchases.UnitPurchasePrice,
-                                          TotalPrice = purchases.TotalPrice,
-                                          PaidAmount = purchases.PaidAmount,
-                                          UnPaidAmount = purchases.UnPaidAmount,
-                                      }).ToListAsync();
-            return SupplierLoan;
-        }
+        //public async Task<List<PurchaseDto>> GetSuppliersLoanDetails(int id)
+        //{
+        //    var SupplierLoan = await (from purchases in _context.Purchases
+        //                              where purchases.UnPaidAmount > 0 && purchases.SupplierId ==id
+        //                              select new PurchaseDto
+        //                              {
+        //                                  Id = purchases.Id,
+        //                                  Supplier = purchases.Supplier.SupplierName,
+        //                                  Goods = purchases.Goods.GoodName,
+        //                                  PurchaseAmount = purchases.PurchaseAmount,
+        //                                  UnitPurchasePrice = purchases.UnitPurchasePrice,
+        //                                  TotalPrice = purchases.TotalPrice,
+        //                                  PaidAmount = purchases.PaidAmount,
+        //                                  UnPaidAmount = purchases.UnPaidAmount,
+        //                              }).ToListAsync();
+        //    return SupplierLoan;
+        //}
     }
 }

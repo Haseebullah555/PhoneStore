@@ -40,21 +40,21 @@ namespace PhoneStore.Web.Areas.PhoneStore.Controllers
             }
             return Json(new { data = false });
         }
-        [HttpGet]
-        public async Task<IActionResult> CustomerLoanView ()
-        {
-            return View();
-        }
-        public async Task<JsonResult> CustomersLoan()
-        {
-            var loans = await _mediator.Send(new GetListOfCustomersLoanRequest());
-            return Json(new { data = loans });
-        }
-        [HttpGet]
-        public async Task<JsonResult> CustomersLoanDetails(string customerName)
-        {
-            var loanDetails = await _mediator.Send(new GetCustomersLoanDetailsRequest { CustomerName = customerName });
-            return Json(new { data = loanDetails });
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> CustomerLoanView ()
+        //{
+        //    return View();
+        //}
+        //public async Task<JsonResult> CustomersLoan()
+        //{
+        //    var loans = await _mediator.Send(new GetListOfCustomersLoanRequest());
+        //    return Json(new { data = loans });
+        //}
+        //[HttpGet]
+        //public async Task<JsonResult> CustomersLoanDetails(string customerName)
+        //{
+        //    var loanDetails = await _mediator.Send(new GetCustomersLoanDetailsRequest { CustomerName = customerName });
+        //    return Json(new { data = loanDetails });
+        //}
     }
 }

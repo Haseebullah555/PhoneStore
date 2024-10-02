@@ -9,7 +9,7 @@ namespace PhoneStore.Application.Contracts
         Task<List<SalesDto>> GetAllSales();
         Task<SalesDto> GetSale(int id);
         Task<List<SalesDto>> GetCustomersLoan();
-        Task<List<SalesDto>> GetCustomersLoanDetails(string customerName);
+        //Task<List<SalesDto>> GetCustomersLoanDetails(string customerName);
         
     }
 }

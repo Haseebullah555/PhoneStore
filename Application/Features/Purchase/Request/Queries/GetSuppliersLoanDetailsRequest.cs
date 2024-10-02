@@ -5,5 +5,6 @@ namespace PhoneStore.Application.Features.Purchase.Request.Queries
 {
     public class GetSuppliersLoanDetailsRequest : IRequest<List<PurchaseDto>>
     {
+        public int Id { get; set; }
     }
 }

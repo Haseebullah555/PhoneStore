@@ -71,7 +71,7 @@ namespace PhoneStore.Persistence.Repositories
                                       join province in _context.Provinces on customer.ProvinceId equals province.Id
                                       where sales.UnPaidAmount > 0
                                       group sales by new
-                                      { 
+                                      {
                                           customer.CustomerName,          // Group by CustomerName
                                           customer.ProvinceId,            // Keep ProvinceId in the group key
                                           province.Name                   // ProvinceName in the group key
@@ -87,26 +87,26 @@ namespace PhoneStore.Persistence.Repositories
                                       }).ToListAsync();
             return CustomerLoan;
         }
-        public async Task<List<SalesDto>> GetCustomersLoanDetails(string customerName)
-        {
-            var CustomerLoan = await (from sales in _context.Sales
-                                      join province in _context.Provinces on sales.Customer.ProvinceId equals province.Id
-                                      where sales.UnPaidAmount > 0 && sales.Customer.CustomerName == customerName
-                                      select new SalesDto
-                                      {
-                                          Id = sales.Id,
-                                          Customer = sales.Customer.CustomerName,
-                                          CustomerId = sales.CustomerId,
-                                          GoodName = sales.Goods.GoodName,
-                                          SaleAmount = sales.SaleAmount,
-                                          SaleUnitPrice = sales.SaleUnitPrice,
-                                          TotalPrice = sales.TotalPrice,
-                                          PaidAmount = sales.PaidAmount,
-                                          UnPaidAmount = sales.UnPaidAmount,
-                                          ProvinceId = sales.Customer.ProvinceId,
-                                          ProvinceName = province.Name
-                                      }).ToListAsync();
-            return CustomerLoan;
-        }
+        //public async Task<List<SalesDto>> GetCustomersLoanDetails(string customerName)
+        //{
+        //    var CustomerLoan = await (from sales in _context.Sales
+        //                              join province in _context.Provinces on sales.Customer.ProvinceId equals province.Id
+        //                              where sales.UnPaidAmount > 0 && sales.Customer.CustomerName == customerName
+        //                              select new SalesDto
+        //                              {
+        //                                  Id = sales.Id,
+        //                                  Customer = sales.Customer.CustomerName,
+        //                                  CustomerId = sales.CustomerId,
+        //                                  GoodName = sales.Goods.GoodName,
+        //                                  SaleAmount = sales.SaleAmount,
+        //                                  SaleUnitPrice = sales.SaleUnitPrice,
+        //                                  TotalPrice = sales.TotalPrice,
+        //                                  PaidAmount = sales.PaidAmount,
+        //                                  UnPaidAmount = sales.UnPaidAmount,
+        //                                  ProvinceId = sales.Customer.ProvinceId,
+        //                                  ProvinceName = province.Name
+        //                              }).ToListAsync();
+        //    return CustomerLoan;
+        //}
     }
 }

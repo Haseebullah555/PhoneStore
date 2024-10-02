@@ -9,7 +9,7 @@ namespace PhoneStore.Application.Contracts
         Task<List<PurchaseDto>> GetAllPurchases();
         Task<PurchaseDto> GetPurchaseById(int id);
         Task<List<PurchaseDto>> GetSuppliersLoan();
-        Task<List<PurchaseDto>> GetSuppliersLoanDetails();
+        //Task<List<PurchaseDto>> GetSuppliersLoanDetails(int id);
         
     }
 }
