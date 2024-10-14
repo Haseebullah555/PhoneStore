@@ -8444,7 +8444,7 @@ class Dropdown extends BaseComponent {
 
   _createPopper(parent) {
     if (typeof _popperjs_core__WEBPACK_IMPORTED_MODULE_0__ === 'undefined') {
-      throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+      throw new TypeError('Bootstrap\'s dropdowns require Popper (/*hhttps://popper.js.org*/)');
     }
 
     let referenceElement = this._element;
@@ -9921,7 +9921,7 @@ const TRIGGER_MANUAL = 'manual';
 class Tooltip extends BaseComponent {
   constructor(element, config) {
     if (typeof _popperjs_core__WEBPACK_IMPORTED_MODULE_0__ === 'undefined') {
-      throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+      throw new TypeError('Bootstrap\'s tooltips require Popper (/*hhttps://popper.js.org*/)');
     }
 
     super(element); // private
@@ -61916,7 +61916,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /*!
  * Quill Editor v1.3.7
- * https://quilljs.com/
+ * 
  * Copyright (c) 2014, Jason Chen
  * Copyright (c) 2013, salesforce.com
  */
@@ -78551,22 +78551,22 @@ var __webpack_exports__ = {};
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-// Jquery - jQuery is a popular and feature-rich JavaScript library. Learn more: https://jquery.com/
+// Jquery - jQuery is a popular and feature-rich JavaScript library. Learn more: 
 window.jQuery = window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/src/jquery.js");
 
-// Bootstrap - The most popular framework uses as the foundation. Learn more: http://getbootstrap.com
+// Bootstrap - The most popular framework uses as the foundation. Learn more:
 window.bootstrap = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
-// Popper.js - Tooltip & Popover Positioning Engine used by Bootstrap. Learn more: https://popper.js.org
+// Popper.js - Tooltip & Popover Positioning Engine used by Bootstrap. Learn more: /*hhttps://popper.js.org*/
 window.Popper = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js");
 
 // Wnumb - Number & Money formatting. Learn more: https://refreshless.com/wnumb/
 window.wNumb = __webpack_require__(/*! wnumb */ "./node_modules/wnumb/wNumb.js");
 
-// Moment - Parse, validate, manipulate, and display dates and times in JavaScript. Learn more: https://momentjs.com/
+// Moment - Parse, validate, manipulate, and display dates and times in JavaScript. Learn more: 
 window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-// ES6-Shim - ECMAScript 6 compatibility shims for legacy JS engines.  Learn more: https://github.com/paulmillr/es6-shim
+// ES6-Shim - ECMAScript 6 compatibility shims for legacy JS engines.  Learn more: 
 __webpack_require__(/*! es6-shim/es6-shim.min.js */ "./node_modules/es6-shim/es6-shim.min.js");
 
 //////////////////////////////////////////////////////////////////////
@@ -78575,7 +78575,7 @@ __webpack_require__(/*! es6-shim/es6-shim.min.js */ "./node_modules/es6-shim/es6
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-// Apexcharts - mBdern charting library that helps developers to create beautiful and interactive visualizations for web pages: https://apexcharts.com/
+// Apexcharts - mBdern charting library that helps developers to create beautiful and interactive visualizations for web pages: 
 window.ApexCharts = __webpack_require__(/*! apexcharts/dist/apexcharts.min.js */ "./node_modules/apexcharts/dist/apexcharts.min.js");
 
 // FormValidation - Best premium validation library for JavaScript. Zero dependencies. Learn more: https://formvalidation.io/
@@ -78614,7 +78614,7 @@ window.ClipboardJS = __webpack_require__(/*! clipboard/dist/clipboard.min.js */ 
 window.Dropzone = __webpack_require__(/*! dropzone/dist/min/dropzone.min.js */ "./node_modules/dropzone/dist/min/dropzone.min.js")["default"];
 __webpack_require__(/*! @/src/js/vendors/plugins/dropzone.init.js */ "../src/js/vendors/plugins/dropzone.init.js");
 
-// Quill - is a free, open source WYSIWYG editor built for the modern web. Completely customize it for any need with its modular architecture and expressive API: https://quilljs.com/
+// Quill - is a free, open source WYSIWYG editor built for the modern web. Completely customize it for any need with its modular architecture and expressive API:  
 window.Quill = __webpack_require__(/*! quill/dist/quill.js */ "./node_modules/quill/dist/quill.js");
 
 // Tagify - Transforms an input field or a textarea into a Tags component, in an easy, customizable way, with great performance and small code footprint, exploded with features: https://github.com/yairEO/tagify

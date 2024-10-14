@@ -15,7 +15,8 @@ namespace PhoneStore.Application.Features.Sale.Handler.Queries
         }
         public Task<List<SalesDto>> Handle(GetListOfSalesRequest request, CancellationToken cancellationToken)
         {
-            return _unitOfWork.SalesRepository.GetAllSales();
+            //   return _unitOfWork.SalesRepository.GetAllSales();
+            return null;
         }
     }
 }

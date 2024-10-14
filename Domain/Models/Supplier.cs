@@ -9,6 +9,9 @@ namespace PhoneStore.Domain.Models
         public string SupplierName { get; set; }
         public string? Address { get; set; }
         public string? PhoneNumber { get; set; }
+        public int Total { get; set; }
+        public int PaidAmount { get; set; }
+        public int UnpaidAmount { get; set; }
         public virtual List<Purchase> Purchases { get; set; } = new List<Purchase>();
 
     }

@@ -45,10 +45,10 @@ namespace PhoneStore.Persistence.Repositories
             _goodsRepository ??= new GoodsRepository(_context);
         public ICompanyRepository CompanyRepository =>
             _companyRepository ??= new CompanyRepository(_context);
-        public IPurchaseRepository PurchaseRepository => 
-            _purchaseRepository ??= new PurchasesRepository(_context);
-        public ISalesRepository SalesRepository =>
-            _salesRepository ??= new SalesRepository(_context);
+        //public IPurchaseRepository PurchaseRepository => 
+        //    _purchaseRepository ??= new PurchasesRepository(_context);
+        //public ISalesRepository SalesRepository =>
+        //    _salesRepository ??= new SalesRepository(_context);
         public IExtraExpensesRepository ExtraExpensesRepository =>
             _extraExpensesRepository ??= new ExtraExpensesRepository(_context);
         public ICustomersPaymentRepository CustomersPaymentRepository =>

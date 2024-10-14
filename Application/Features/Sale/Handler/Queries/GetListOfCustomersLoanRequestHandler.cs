@@ -15,7 +15,8 @@ namespace PhoneStore.Application.Features.Sale.Handler.Queries
         }
         public async Task<List<SalesDto>> Handle(GetListOfCustomersLoanRequest request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.SalesRepository.GetCustomersLoan();
+            //  return await _unitOfWork.SalesRepository.GetCustomersLoan();
+            return null;
         }
     }
 }

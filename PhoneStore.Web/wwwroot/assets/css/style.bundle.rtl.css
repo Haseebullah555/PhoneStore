@@ -50339,9 +50339,7 @@ body {
     .container-lg,
     .container-xl {
         max-width: none;
-        height:50px;
         padding: 0 15px;
-        
     }
 
     .header-tablet-and-mobile-fixed[data-kt-sticky-header=on] .wrapper {
@@ -50628,9 +50626,8 @@ body {
     .container-xl,
     .container-xxl {
         max-width: none;
-        padding:15px  15px;
+        padding: 0 15px;
     }
-    
 }
 
 @media (min-width: 992px) {

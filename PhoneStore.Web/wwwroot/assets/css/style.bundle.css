@@ -96,9 +96,7 @@ hr {
     line-height: 1.2;
     color: #181c32;
 }
-.content-center {
-    margin-top: 15px;
-}
+
 .h1, h1 {
     font-size: calc(1.3rem + .6vw);
 }

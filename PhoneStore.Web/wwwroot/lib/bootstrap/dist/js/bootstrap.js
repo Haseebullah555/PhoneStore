@@ -2153,7 +2153,7 @@
 
     _createPopper(parent) {
       if (typeof Popper__namespace === 'undefined') {
-        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+        throw new TypeError('Bootstrap\'s dropdowns require Popper (/*hhttps://popper.js.org*/)');
       }
 
       let referenceElement = this._element;
@@ -3622,7 +3622,7 @@
   class Tooltip extends BaseComponent {
     constructor(element, config) {
       if (typeof Popper__namespace === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+        throw new TypeError('Bootstrap\'s tooltips require Popper (/*hhttps://popper.js.org*/)');
       }
 
       super(element); // private

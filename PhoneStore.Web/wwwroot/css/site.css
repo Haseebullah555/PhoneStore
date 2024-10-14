@@ -34,16 +34,18 @@ tfoot {
 }
 
 .dataTables_filter {
-    display: none;
+    display: inline;
 }
 
 tfoot .search-row th .search-input {
     height: 30px;
+    display:inline;
     width: 100% !important;
 }
 
 .search-row th .search-input {
     height: 30px;
+    display:inline;
     width: 100% !important;
 }
 

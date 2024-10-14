@@ -33,54 +33,6 @@
         </div>
     </div>
 </div>
-@* Add Customer Model *@
-<div id="addCustomerModel" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">@L["Register Customer"]</h5>
-                <button type="button" class="btn btn-danger light" data-dismiss="modal"> <span>&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <form id="frmAddCustomer" method="post">
-                    <div class="modal-body py-lg-10 px-lg-10">
-                        <div class="form-group row mb-2">
-                            <div class="col-md-4 mb-2">
-                                <label asp-for="CustomerName" class="required form-label"></label>
-                                <input asp-for="CustomerName" class="form-control" />
-                                <span asp-validation-for="CustomerName" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4 mb-2">
-                                <label asp-for="PhoneNumber" class="required form-label"></label>
-                                <input asp-for="PhoneNumber" class="form-control" />
-                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4 mb-2">
-                                <label asp-for="Address" class="required form-label"></label>
-                                <input asp-for="Address" class="form-control" />
-                                <span asp-validation-for="Address" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <div class="col-md-4 mb-2">
-                                <label asp-for="ProvinceId" class="required form-label"></label>
-                                <select asp-for="ProvinceId" asp-items="@ViewBag.Provinces"
-                                        class="form-select form-control select2" data-placeholder="@L["Select an option"]" required>
-                                    <option></option>
-                                </select>
-                                <span asp-validation-for="ProvinceId" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@L["Close"]</button>
-                        <button type="submit" class="btn btn-primary">@L["Save Changes"]</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 @* Edit Customer Model *@
 <div id="EditCustomerModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -182,31 +134,6 @@
 
                     val = $(this).val();
                 dtTable.search(val.trim()).draw();
-            });
-        });
-        $('#frmAddCustomer').on('submit', function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                url: "Customer/AddCustomer",
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.data) {
-                        $('#addCustomerModel').modal('hide');
-                        $("#dtTable").DataTable().ajax.reload();
-                        $('#frmAddCustomer').trigger("reset");
-                        notification("@Html.Raw(L["success"])", "@Html.Raw(L["Customer has been added successfully"])", "success");
-                    }
-                    else {
-                        notification("@Html.Raw(L["failed"])", "@Html.Raw(L["Customer is Already Exist"])", "warning");
-                    }
-
-                },
-                error: function (xhr, status, error) {
-                    notification("@Html.Raw(L["error"])", "@Html.Raw(L["An Error Has beed Occured Pleas Try Again"])", "error");
-                }
             });
         });
         $('#EditCustomerFrm').on('submit', function (e) {

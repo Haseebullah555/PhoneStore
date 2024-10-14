@@ -3907,7 +3907,7 @@
 
     _createPopper(parent) {
       if (typeof Popper === 'undefined') {
-        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+          throw new TypeError('Bootstrap\'s dropdowns require Popper ()');//hthtps://popper.js.org
       }
 
       let referenceElement = this._element;
@@ -5376,7 +5376,7 @@
   class Tooltip extends BaseComponent {
     constructor(element, config) {
       if (typeof Popper === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+          throw new TypeError('Bootstrap\'s tooltips require Popper ()');//hthtps://popper.js.org
       }
 
       super(element); // private

@@ -15,7 +15,8 @@ namespace PhoneStore.Application.Features.Sale.Handler.Queries
         }
         public async Task<SalesDto> Handle(GetSaleByIdRequest request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.SalesRepository.GetSale(request.SaleId);
+          //  return await _unitOfWork.SalesRepository.GetSale(request.SaleId);
+          return null;
         }
     }
 }

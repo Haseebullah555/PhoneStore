@@ -18,7 +18,7 @@ namespace PhoneStore.Application.Features.Purchase.Handler.Commands
         public async Task<int> Handle(UpdatePurchaseCommand request, CancellationToken cancellationToken)
         {
             var purchase = _mapper.Map<Domain.Models.Purchase>(request.PurchaseDto);
-            await _unitOfWork.PurchaseRepository.Update(purchase);
+           // await _unitOfWork.PurchaseRepository.Update(purchase);
             await _unitOfWork.SaveChanges(cancellationToken);
             return purchase.Id;
         }

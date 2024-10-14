@@ -18,7 +18,7 @@ namespace PhoneStore.Application.Features.Sale.Handler.Commands
         public async Task<int> Handle(UpdateSaleCommand request, CancellationToken cancellationToken)
         {
             var sale = _mapper.Map<Domain.Models.Sales>(request.SalesDto);
-            await _unitOfWork.SalesRepository.Update(sale);
+            //await _unitOfWork.SalesRepository.Update(sale);
             await _unitOfWork.SaveChanges(cancellationToken);
             return sale.Id;
         }

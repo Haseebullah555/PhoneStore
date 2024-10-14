@@ -26,6 +26,23 @@
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="row">
+                         <div class="form-group col-md-4">
+                            <label asp-for="Total" class="control-label"></label>
+                            <input asp-for="Total" class="form-control" />
+                            <span asp-validation-for="Total" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="PaidAmount" class="control-label"></label>
+                            <input asp-for="PaidAmount" class="form-control" />
+                            <span asp-validation-for="PaidAmount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="UnpaidAmount" class="control-label"></label>
+                            <input asp-for="UnpaidAmount" class="form-control" />
+                            <span asp-validation-for="UnpaidAmount" class="text-danger"></span>
+                        </div>
+                    </div>
                    
                     <div class="col-md-12">
                         <table id="ExpTable" class="table table-responsive table-sm">
@@ -41,13 +58,7 @@
                                         Purchase Price
                                     </th>
                                     <th>
-                                        Total Price
-                                    </th>
-                                    <th>
-                                        Paid Amount
-                                    </th>
-                                    <th>
-                                        Unpaid Amount
+                                        SubTotal Price
                                     </th>
                                     <th></th>
                                 </tr>
@@ -71,13 +82,7 @@
                                             <input asp-for="Purchases[i].UnitPurchasePrice" class="form-control unit-price" />
                                         </td>
                                         <td>
-                                            <input asp-for="Purchases[i].TotalPrice" class="form-control total-price" readonly />
-                                        </td>
-                                        <td>
-                                            <input asp-for="Purchases[i].PaidAmount" class="form-control paid" />
-                                        </td>
-                                        <td>
-                                            <input asp-for="Purchases[i].UnPaidAmount" class="form-control unpaid" readonly />
+                                            <input asp-for="Purchases[i].SubTotal" class="form-control sub-total-price" readonly />
                                         </td>
                                         <td>
                                             <button id="btndummy-@i" type="button" class="btn btn-sm invisible">Dummy</button>
@@ -153,27 +158,33 @@
             var UnitPrice = row.find('.unit-price').val();
 
             // Ensure both are numbers
-            var totalPrice = parseFloat(Amount) * parseFloat(UnitPrice);
+            var subTotalPrice = parseFloat(Amount) * parseFloat(UnitPrice);
 
             // Set the TotalPrice field in the current row
-            row.find('.total-price').val(totalPrice);
+            row.find('.sub-total-price').val(subTotalPrice);
+             calculateTotal();
         });
 
         // Handle change or input for paid amount
-        $(document).on('change input', '.paid', function () {
-            // Get the current row
-            var row = $(this).closest('tr');
+        $(document).ready(function () {
 
-            // Get the values from the current row
-            var Paid = row.find('.paid').val();
-            var TotalPrice = row.find('.total-price').val();
+        // Function to calculate the total by summing up all subtotals
+        function calculateTotal() {
+            let total = 0;
+            $('.sub-total-price').each(function () {
+                total += parseFloat($(this).val()) || 0;
+            });
 
-            // Calculate unpaid amount
-            var UnPaid = parseFloat(TotalPrice) - parseFloat(Paid);
+            // Set the total value
+            $('input[name="Total"]').val(total.toFixed(2));
+        }
 
-            // Set the UnPaid field in the current row
-            row.find('.unpaid').val(UnPaid);
+        // Event listener for changes in unit price or amount
+        $(document).on('input', '.unit-price, .amount', function () {
+            let $row = $(this).closest('tr');
+            calculateSubTotal($row);
         });
+    });
         $(document).ready(function () {
             var message = '@TempData["Message"]';
             var messageType = '@TempData["MessageType"]';

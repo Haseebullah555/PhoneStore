@@ -46864,7 +46864,6 @@ body {
 .container-xl {
     max-width: none;
     padding: 0 15px;
-    height:50px;
   }
 
   .header-tablet-and-mobile-fixed[data-kt-sticky-header=on] .wrapper {

@@ -15,7 +15,8 @@ namespace PhoneStore.Application.Features.Purchase.Handler.Queries
         }
         public async Task<List<PurchaseDto>> Handle(GetListOfPurchasesRequest request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.PurchaseRepository.GetAllPurchases();
+            // return await _unitOfWork.PurchaseRepository.GetAllPurchases();
+            return null;
         }
     }
 }

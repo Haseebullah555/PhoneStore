@@ -19,14 +19,14 @@ namespace PhoneStore.Web.Controllers
 
         public IActionResult Index()
         {
-			ViewBag.Sales = _context.Sales.Where(s => s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s=> s.TotalPrice);
-            ViewBag.CashSales = _context.Sales.Where(s => s.PaidAmount > 0 && s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s => s.PaidAmount);
-            ViewBag.LoanSales = _context.Sales.Where(s => s.UnPaidAmount > 0 && s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s => s.UnPaidAmount);
-			ViewBag.Purchases = _context.Purchases.Where(s => s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s=> s.TotalPrice);
-            ViewBag.CashPurchases = _context.Purchases.Where(p => p.PaidAmount > 0 && p.CreatedDate.Date == DateTime.UtcNow.Date).Sum(p => p.PaidAmount);
-            ViewBag.LoanPurchases = _context.Purchases.Where(p => p.UnPaidAmount > 0 && p.CreatedDate.Date == DateTime.UtcNow.Date).Sum(p => p.UnPaidAmount);
-			ViewBag.OutOfStockCount = _context.Stocks.Count(s => s.Quantity < 100);
-			ViewBag.ExtraExpenses = _context.ExtraExpenses.Sum(e => e.Quantity);
+			//ViewBag.Sales = _context.Sales.Where(s => s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s=> s.TotalPrice);
+   //         ViewBag.CashSales = _context.Sales.Where(s => s.PaidAmount > 0 && s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s => s.PaidAmount);
+   //         ViewBag.LoanSales = _context.Sales.Where(s => s.UnPaidAmount > 0 && s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s => s.UnPaidAmount);
+			//ViewBag.Purchases = _context.Purchases.Where(s => s.CreatedDate.Date == DateTime.UtcNow.Date).Sum(s=> s.TotalPrice);
+   //         ViewBag.CashPurchases = _context.Purchases.Where(p => p.PaidAmount > 0 && p.CreatedDate.Date == DateTime.UtcNow.Date).Sum(p => p.PaidAmount);
+   //         ViewBag.LoanPurchases = _context.Purchases.Where(p => p.UnPaidAmount > 0 && p.CreatedDate.Date == DateTime.UtcNow.Date).Sum(p => p.UnPaidAmount);
+			//ViewBag.OutOfStockCount = _context.Stocks.Count(s => s.Quantity < 100);
+			//ViewBag.ExtraExpenses = _context.ExtraExpenses.Sum(e => e.Quantity);
 
 			return View();
         }

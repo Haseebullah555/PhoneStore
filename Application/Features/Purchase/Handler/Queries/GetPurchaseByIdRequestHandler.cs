@@ -15,7 +15,8 @@ namespace PhoneStore.Application.Features.Purchase.Handler.Queries
         }
         public async Task<PurchaseDto> Handle(GetPurchaseByIdRequest request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.PurchaseRepository.GetPurchaseById(request.Id);
+            //   return await _unitOfWork.PurchaseRepository.GetPurchaseById(request.Id);
+            return null;
         }
     }
 }
